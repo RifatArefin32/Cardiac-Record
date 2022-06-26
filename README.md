@@ -26,7 +26,7 @@ as well as heart rate easily.
 <hr>
 
 ## Usage
-Use this [stroyborard]() to use this application easily.
+Use this [stroyborard](https://github.com/RIfatArefin32/Cardiac-Record/wiki/Story-board-sequence) to use this application easily.
 <hr>
 
 ## Contributing
