@@ -40,7 +40,7 @@ public class ViewRecord extends AppCompatActivity {
         TextView comment = findViewById(R.id.commentData);
 
         retrieveData();
-/*        String Mdate = "";
+/*      String Mdate = "";
         String Mtime = "";
         String systolic = "";
         String diastolic = "";
@@ -57,11 +57,15 @@ public class ViewRecord extends AppCompatActivity {
             comment.setText(""+dataModel.getComment());
         }
     }
+
+    /**
+     * This retrieveData() function retrieves data from sharedpreference to our array list.
+     */
     private void retrieveData()
     {
-        sharedPreferences = getSharedPreferences("mishu",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("record",MODE_PRIVATE);
         gson = new Gson();
-        String jsonString = sharedPreferences.getString("mishu",null);
+        String jsonString = sharedPreferences.getString("record",null);
         Type type = new TypeToken<ArrayList<DataModel>>(){}.getType();
         recordsArrayList = gson.fromJson(jsonString,type);
         if(recordsArrayList ==null)
