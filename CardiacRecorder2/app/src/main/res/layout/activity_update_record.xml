@@ -13,21 +13,13 @@
         android:paddingBottom="50dp"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/ic_add_black_24dp"
-            android:scaleType="centerCrop" />
-
         <TextView
             fontPath="fonts/nunito_extra_bold.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:text="Add a record"
+            android:text="Update a record"
             android:textColor="@android:color/black"
             android:textSize="22sp"
             tools:ignore="MissingPrefix" />
@@ -42,16 +34,15 @@
             tools:ignore="MissingPrefix" />
 
         <EditText
-            android:id="@+id/addSystolic"
+            android:textSize="14sp"
             fontPath="fonts/nunito_light.ttf"
-            android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:singleLine="true"
             android:background="@drawable/btn_border"
             android:padding="10dp"
-            android:singleLine="true"
-            android:textSize="14sp"
+            android:id="@+id/updateSystolic"
             tools:ignore="MissingPrefix" />
 
         <TextView
@@ -68,12 +59,11 @@
             fontPath="fonts/nunito_light.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
             android:layout_marginTop="5dp"
             android:singleLine="true"
             android:background="@drawable/btn_border"
             android:padding="10dp"
-            android:id="@+id/addDiastolic"
+            android:id="@+id/updateDiastolic"
             tools:ignore="MissingPrefix" />
 
         <TextView
@@ -91,11 +81,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:inputType="number"
             android:singleLine="true"
             android:background="@drawable/btn_border"
             android:padding="10dp"
-            android:id="@+id/addHeartRate"
+            android:id="@+id/updateHeartRate"
             tools:ignore="MissingPrefix" />
 
         <TextView
@@ -108,15 +97,15 @@
             tools:ignore="MissingPrefix" />
 
         <EditText
-            android:id="@+id/date"
+            android:textSize="14sp"
             fontPath="fonts/nunito_light.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:singleLine="true"
             android:background="@drawable/btn_border"
             android:padding="10dp"
-            android:singleLine="true"
-            android:textSize="14sp"
+            android:id="@+id/updateDate"
             tools:ignore="MissingPrefix" />
 
         <TextView
@@ -137,7 +126,7 @@
             android:singleLine="true"
             android:background="@drawable/btn_border"
             android:padding="10dp"
-            android:id="@+id/time"
+            android:id="@+id/updateTime"
             tools:ignore="MissingPrefix" />
 
         <TextView
@@ -158,14 +147,14 @@
             android:singleLine="true"
             android:background="@drawable/btn_border"
             android:padding="10dp"
-            android:id="@+id/addComment"
+            android:id="@+id/updateComment"
             tools:ignore="MissingPrefix" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/addRecord"
-            android:text="Add Record"
+            android:id="@+id/updateRecord"
+            android:text="Update Record"
             android:background="@drawable/btn_background"
             android:textColor="@color/white"
             android:layout_marginTop="40dp" />
