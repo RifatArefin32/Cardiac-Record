@@ -50,8 +50,7 @@ public class UpdateRecord extends AppCompatActivity {
         commentET = findViewById(R.id.updateComment);
         Button updateButton = findViewById( R.id.updateRecord);
         retrieveData();
-        datePicker();
-        timePicker();
+
 
         dataModel = dataModelArrayList.get(index);
 
@@ -61,7 +60,8 @@ public class UpdateRecord extends AppCompatActivity {
         diastolicET.setText(String.valueOf(dataModel.getDiastolic()));
         heartRateET.setText(String.valueOf(dataModel.getHeartRate()));
         commentET.setText(dataModel.getComment());
-
+        
+        
         updateButton.setOnClickListener(view -> {
 
             isAllFieldsChecked = CheckAllFields();
@@ -71,6 +71,8 @@ public class UpdateRecord extends AppCompatActivity {
                 int diasInt = Integer.parseInt(diastolicET.getText().toString());
                 int heartInt = Integer.parseInt(heartRateET.getText().toString());
                 String commentStr = commentET.getText().toString();
+                dateStr = dateET.getText().toString();
+                timeStr = timeET.getText().toString();
                 dataModel = new DataModel(dateStr,timeStr,sysInt,diasInt,heartInt,commentStr);
 
                 dataModelArrayList.set(index,dataModel);
@@ -80,8 +82,6 @@ public class UpdateRecord extends AppCompatActivity {
                 saveData();
                 Toast.makeText(UpdateRecord.this,"Update successful",Toast.LENGTH_SHORT).show();
 
-
-                
                 finish();
             }
 
@@ -145,54 +145,8 @@ public class UpdateRecord extends AppCompatActivity {
         return true;
     }
 
-    private void datePicker()
-    {
-        dateET.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog dialog = new DatePickerDialog(UpdateRecord.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, onDateSetListener,
-                        year, month, day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
-        });
 
-        onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                dateStr = dayOfMonth + "-" + (month + 1) + "-" + year;
-                dateET.setText(dateStr);
-            }
-        };
-    }
 
-    private void timePicker() {
-        timeET.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar calendar = Calendar.getInstance();
-                int hour =calendar.get(Calendar.HOUR_OF_DAY);
-                int minute =calendar.get(Calendar.MINUTE);
-                //calendar.clear();
-                TimePickerDialog dialog =  new TimePickerDialog(UpdateRecord.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        timeStr = hourOfDay + ":" +minute;
-                        timeET.setText(timeStr);
-
-                    }
-                }, hour , minute,true);
-                //  dialog.setTitle("Select Time");
-
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
-        });
-    }
 
     private void retrieveData()
     {
