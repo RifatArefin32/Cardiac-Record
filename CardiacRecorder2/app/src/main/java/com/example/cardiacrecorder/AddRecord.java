@@ -49,8 +49,6 @@ public class AddRecord extends AppCompatActivity {
         comEd=findViewById(R.id.addComment);
 
         retrieveData();
-        datePicker();
-        timePicker();
 
         addButton.setOnClickListener(view -> {
             isAllFieldsChecked = CheckAllFields();
@@ -60,6 +58,9 @@ public class AddRecord extends AppCompatActivity {
                 int diasInt = Integer.parseInt(diaEd.getText().toString());
                 int heartInt = Integer.parseInt(hrEd.getText().toString());
                 String commentStr = comEd.getText().toString();
+                dateStr = dateEd.getText().toString();
+                timeStr = timeEd.getText().toString();
+
 
                 modelclass = new DataModel(dateStr,timeStr,sysInt,diasInt,heartInt,commentStr);
                 dataArray.add(modelclass);
@@ -94,6 +95,7 @@ public class AddRecord extends AppCompatActivity {
 
         String s1 = sysEd.getText().toString();
         int n1 = Integer.parseInt(s1);
+
         if(n1<0 && n1>200)
         {
             sysEd.setError("Invalid data input");
@@ -107,6 +109,7 @@ public class AddRecord extends AppCompatActivity {
 
         String s2 = diaEd.getText().toString();
         int n2 = Integer.parseInt(s2);
+
         if(n2<0 && n2>120)
         {
             diaEd.setError("Invalid data input");
@@ -121,62 +124,16 @@ public class AddRecord extends AppCompatActivity {
         String s3 = hrEd.getText().toString();
         int n3 = Integer.parseInt(s3);
 
+
         if(n3<0)
         {
+
             hrEd.setError("Invalid data input");
             return false;
         }
 
         // after all validation return true if all required fields are inserted.
         return true;
-    }
-
-    private void datePicker()
-    {
-        dateEd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog dialog = new DatePickerDialog(AddRecord.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, onDateSetListener,
-                        year, month, day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
-        });
-        onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                dateStr = dayOfMonth + "-" + (month + 1) + "-" + year;
-                dateEd.setText(dateStr);
-            }
-        };
-    }
-
-    private void timePicker() {
-        timeEd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar calendar = Calendar.getInstance();
-                int hour =calendar.get(Calendar.HOUR_OF_DAY);
-                int minute =calendar.get(Calendar.MINUTE);
-                //calendar.clear();
-                TimePickerDialog dialog =  new TimePickerDialog(AddRecord.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        timeStr = hourOfDay + ":" +minute;
-                        timeEd.setText(timeStr);
-
-                    }
-                }, hour , minute,true);
-                //  dialog.setTitle("Select Time");
-
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
-        });
     }
 
 
@@ -192,6 +149,8 @@ public class AddRecord extends AppCompatActivity {
             dataArray = new ArrayList<>();
         }
     }
+
+   
     private void saveData()
     {
         sharedPreferences = getSharedPreferences("mishu",MODE_PRIVATE);
