@@ -38,6 +38,7 @@ public class ViewRecord extends AppCompatActivity {
         TextView time = findViewById(R.id.measuredTime);
         TextView date = findViewById(R.id.measuredDate);
         TextView comment = findViewById(R.id.commentData);
+
         retrieveData();
 /*      String Mdate = "";
         String Mtime = "";

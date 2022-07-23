@@ -59,7 +59,8 @@ public class UpdateRecord extends AppCompatActivity {
         diastolicET.setText(String.valueOf(dataModel.getDiastolic()));
         heartRateET.setText(String.valueOf(dataModel.getHeartRate()));
         commentET.setText(dataModel.getComment());
-
+        
+        
         updateButton.setOnClickListener(view -> {
 
             isAllFieldsChecked = CheckAllFields();
@@ -71,7 +72,6 @@ public class UpdateRecord extends AppCompatActivity {
                 String commentStr = commentET.getText().toString();
                 dateStr = dateET.getText().toString();
                 timeStr = timeET.getText().toString();
-
                 dataModel = new DataModel(dateStr,timeStr,sysInt,diasInt,heartInt,commentStr);
 
                 dataModelArrayList.set(index,dataModel);
@@ -166,9 +166,11 @@ public class UpdateRecord extends AppCompatActivity {
         return true;
     }
 
+
     /**
      * This retrieveData() function retrieves data from sharedpreference to our array list.
      */
+
     private void retrieveData()
     {
         sharedPreferences = getSharedPreferences("record",MODE_PRIVATE);
