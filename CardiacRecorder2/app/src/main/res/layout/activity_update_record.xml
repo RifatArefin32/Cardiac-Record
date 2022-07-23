@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:id="@+id/up"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -13,23 +14,23 @@
         android:paddingBottom="50dp"
         android:orientation="vertical">
 
-        <TextView
-            fontPath="fonts/nunito_extra_bold.ttf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:text="Update a record"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            tools:ignore="MissingPrefix" />
+<!--        <TextView-->
+<!--            fontPath="fonts/nunito_extra_bold.ttf"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:text="Update a record"-->
+<!--            android:textColor="@android:color/black"-->
+<!--            android:textSize="22sp"-->
+<!--            tools:ignore="MissingPrefix" />-->
 
         <TextView
             android:layout_marginLeft="3dp"
             fontPath="fonts/nunito_light.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="0dp"
             android:text="Systolic"
             tools:ignore="MissingPrefix" />
 
@@ -51,7 +52,7 @@
             fontPath="fonts/nunito_light.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:text="Diastolic"
             tools:ignore="MissingPrefix" />
 
@@ -73,7 +74,7 @@
             fontPath="fonts/nunito_light.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:text="Heart Rate"
             tools:ignore="MissingPrefix" />
 
@@ -95,7 +96,7 @@
             fontPath="fonts/nunito_light.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:text="Measured date"
             tools:ignore="MissingPrefix" />
 
@@ -116,7 +117,7 @@
             fontPath="fonts/nunito_light.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:text="Measured time"
             tools:ignore="MissingPrefix" />
 
@@ -137,7 +138,7 @@
             fontPath="fonts/nunito_light.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:text="Comment"
             tools:ignore="MissingPrefix" />
 

@@ -11,6 +11,7 @@
         android:paddingRight="20dp"
         android:paddingTop="30dp"
         android:paddingBottom="50dp"
+        android:id="@+id/add"
         android:orientation="vertical">
 
         <ImageView
