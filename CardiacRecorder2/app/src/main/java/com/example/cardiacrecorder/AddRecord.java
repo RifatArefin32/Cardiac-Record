@@ -72,8 +72,10 @@ public class AddRecord extends AppCompatActivity {
      * @return
      *  Return boolean flag
      */
+
 //private to public converted by RifatArefin
     public boolean CheckAllFields() {
+
         if (dateEd.length() == 0) {
             dateEd.setError("This field is required");
             return false;
