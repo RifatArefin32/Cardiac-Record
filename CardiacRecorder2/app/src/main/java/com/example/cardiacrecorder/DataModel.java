@@ -1,7 +1,7 @@
 package com.example.cardiacrecorder;
 
 public class DataModel {
-    String date = "01/01/2000";
+    String date = "01-01-2000";
     String time = "00.00";
     int systolic = 0;
     int diastolic = 0;

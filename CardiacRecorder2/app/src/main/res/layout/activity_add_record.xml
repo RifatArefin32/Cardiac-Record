@@ -11,6 +11,7 @@
         android:paddingRight="20dp"
         android:paddingTop="30dp"
         android:paddingBottom="50dp"
+        android:id="@+id/add"
         android:orientation="vertical">
 
         <ImageView
@@ -117,6 +118,7 @@
             android:padding="10dp"
             android:singleLine="true"
             android:textSize="14sp"
+            android:hint="DD-MM-YYYY"
             tools:ignore="MissingPrefix" />
 
         <TextView
@@ -138,6 +140,8 @@
             android:background="@drawable/btn_border"
             android:padding="10dp"
             android:id="@+id/time"
+
+            android:hint="HH:MM AM/PM"
             tools:ignore="MissingPrefix" />
 
         <TextView

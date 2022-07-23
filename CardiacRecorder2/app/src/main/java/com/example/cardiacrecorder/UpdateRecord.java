@@ -51,7 +51,6 @@ public class UpdateRecord extends AppCompatActivity {
         Button updateButton = findViewById( R.id.updateRecord);
         retrieveData();
 
-
         dataModel = dataModelArrayList.get(index);
 
         dateET.setText(dataModel.getDate());
@@ -90,6 +89,13 @@ public class UpdateRecord extends AppCompatActivity {
 
     }
 
+
+    /**
+     * This CheckAllFields() function checks if the fields are valid or not.
+     * @return
+     *  Return boolean flag
+     */
+
     private boolean CheckAllFields() {
         if (dateET.length() == 0) {
             dateET.setError("This field is required");
@@ -108,12 +114,17 @@ public class UpdateRecord extends AppCompatActivity {
 
         String s1 = systolicET.getText().toString();
         int n1 = Integer.parseInt(s1);
-        if(n1<0 && n1>200)
+        if(n1<0)
         {
             systolicET.setError("Invalid data input");
             return false;
         }
+        if(n1>200)
+        {
+            systolicET.setError("Invalid data input");
+            return false;
 
+        }
         if (diastolicET.length() == 0) {
             diastolicET.setError("This field is required");
             return false;
@@ -121,7 +132,12 @@ public class UpdateRecord extends AppCompatActivity {
 
         String s2 = diastolicET.getText().toString();
         int n2 = Integer.parseInt(s2);
-        if(n2<0 && n2>120)
+        if(n2<0)
+        {
+            diastolicET.setError("Invalid data input");
+            return false;
+        }
+        if(n2>120)
         {
             diastolicET.setError("Invalid data input");
             return false;
@@ -140,19 +156,26 @@ public class UpdateRecord extends AppCompatActivity {
             heartRateET.setError("Invalid data input");
             return false;
         }
+        if(n3>190)
+        {
+            heartRateET.setError("Invalid data input");
+            return false;
+        }
 
         // after all validation return true if all required fields are inserted.
         return true;
     }
 
 
-
+    /**
+     * This retrieveData() function retrieves data from sharedpreference to our array list.
+     */
 
     private void retrieveData()
     {
-        sharedPreferences = getSharedPreferences("mishu",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("record",MODE_PRIVATE);
         gson = new Gson();
-        String jsonString = sharedPreferences.getString("mishu",null);
+        String jsonString = sharedPreferences.getString("record",null);
         Type type = new TypeToken<ArrayList<DataModel>>(){}.getType();
         dataModelArrayList = gson.fromJson(jsonString,type);
         if(dataModelArrayList ==null)
@@ -161,13 +184,17 @@ public class UpdateRecord extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * This saveData() function saves the data in sharedpreference.
+     */
     private void saveData()
     {
-        sharedPreferences = getSharedPreferences("mishu",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("record",MODE_PRIVATE);
         editor = sharedPreferences.edit();
         gson = new Gson();
         String jsonString = gson.toJson(dataModelArrayList);
-        editor.putString("mishu",jsonString);
+        editor.putString("record",jsonString);
         editor.apply();
     }
 
