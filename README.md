@@ -2,7 +2,7 @@
 <p> This is a benificial application to every human
 to keep record of his/her systolic and diastolic pressure
 as well as heart rate for maintaining healthy and sound 
-life <p>
+life. <p>
 
 <hr>
 
