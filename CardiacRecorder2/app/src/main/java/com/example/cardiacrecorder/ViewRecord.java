@@ -38,9 +38,8 @@ public class ViewRecord extends AppCompatActivity {
         TextView time = findViewById(R.id.measuredTime);
         TextView date = findViewById(R.id.measuredDate);
         TextView comment = findViewById(R.id.commentData);
-        Button backButton = findViewById( R.id.backButton);
         retrieveData();
-/*        String Mdate = "";
+/*      String Mdate = "";
         String Mtime = "";
         String systolic = "";
         String diastolic = "";
@@ -55,19 +54,17 @@ public class ViewRecord extends AppCompatActivity {
             date.setText(""+dataModel.getDate());
             time.setText(""+dataModel.getTime());
             comment.setText(""+dataModel.getComment());
-            backButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
         }
     }
+
+    /**
+     * This retrieveData() function retrieves data from sharedpreference to our array list.
+     */
     private void retrieveData()
     {
-        sharedPreferences = getSharedPreferences("mishu",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("record",MODE_PRIVATE);
         gson = new Gson();
-        String jsonString = sharedPreferences.getString("mishu",null);
+        String jsonString = sharedPreferences.getString("record",null);
         Type type = new TypeToken<ArrayList<DataModel>>(){}.getType();
         recordsArrayList = gson.fromJson(jsonString,type);
         if(recordsArrayList ==null)

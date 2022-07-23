@@ -113,7 +113,11 @@ public class CardiacAdapter extends RecyclerView.Adapter<CardiacAdapter.CardiacV
         });
     }
 
-
+    /**
+     * This getItemCount() function returns the number of items in array list.
+     * @return
+     *  Return the no of items in dataModelArrayList
+     */
     @Override
     public int getItemCount() {
         return dataModelArrayList.size() ;

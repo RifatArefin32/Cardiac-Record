@@ -50,8 +50,6 @@ public class UpdateRecord extends AppCompatActivity {
         commentET = findViewById(R.id.updateComment);
         Button updateButton = findViewById( R.id.updateRecord);
         retrieveData();
-        datePicker();
-        timePicker();
 
         dataModel = dataModelArrayList.get(index);
 
@@ -71,6 +69,9 @@ public class UpdateRecord extends AppCompatActivity {
                 int diasInt = Integer.parseInt(diastolicET.getText().toString());
                 int heartInt = Integer.parseInt(heartRateET.getText().toString());
                 String commentStr = commentET.getText().toString();
+                dateStr = dateET.getText().toString();
+                timeStr = timeET.getText().toString();
+
                 dataModel = new DataModel(dateStr,timeStr,sysInt,diasInt,heartInt,commentStr);
 
                 dataModelArrayList.set(index,dataModel);
@@ -80,8 +81,6 @@ public class UpdateRecord extends AppCompatActivity {
                 saveData();
                 Toast.makeText(UpdateRecord.this,"Update successful",Toast.LENGTH_SHORT).show();
 
-
-                
                 finish();
             }
 
@@ -89,6 +88,13 @@ public class UpdateRecord extends AppCompatActivity {
         });
 
     }
+
+
+    /**
+     * This CheckAllFields() function checks if the fields are valid or not.
+     * @return
+     *  Return boolean flag
+     */
 
     private boolean CheckAllFields() {
         if (dateET.length() == 0) {
@@ -108,12 +114,17 @@ public class UpdateRecord extends AppCompatActivity {
 
         String s1 = systolicET.getText().toString();
         int n1 = Integer.parseInt(s1);
-        if(n1<0 && n1>200)
+        if(n1<0)
         {
             systolicET.setError("Invalid data input");
             return false;
         }
+        if(n1>200)
+        {
+            systolicET.setError("Invalid data input");
+            return false;
 
+        }
         if (diastolicET.length() == 0) {
             diastolicET.setError("This field is required");
             return false;
@@ -121,7 +132,12 @@ public class UpdateRecord extends AppCompatActivity {
 
         String s2 = diastolicET.getText().toString();
         int n2 = Integer.parseInt(s2);
-        if(n2<0 && n2>120)
+        if(n2<0)
+        {
+            diastolicET.setError("Invalid data input");
+            return false;
+        }
+        if(n2>120)
         {
             diastolicET.setError("Invalid data input");
             return false;
@@ -140,65 +156,24 @@ public class UpdateRecord extends AppCompatActivity {
             heartRateET.setError("Invalid data input");
             return false;
         }
+        if(n3>190)
+        {
+            heartRateET.setError("Invalid data input");
+            return false;
+        }
 
         // after all validation return true if all required fields are inserted.
         return true;
     }
 
-    private void datePicker()
-    {
-        dateET.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog dialog = new DatePickerDialog(UpdateRecord.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, onDateSetListener,
-                        year, month, day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
-        });
-
-        onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                dateStr = dayOfMonth + "-" + (month + 1) + "-" + year;
-                dateET.setText(dateStr);
-            }
-        };
-    }
-
-    private void timePicker() {
-        timeET.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar calendar = Calendar.getInstance();
-                int hour =calendar.get(Calendar.HOUR_OF_DAY);
-                int minute =calendar.get(Calendar.MINUTE);
-                //calendar.clear();
-                TimePickerDialog dialog =  new TimePickerDialog(UpdateRecord.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        timeStr = hourOfDay + ":" +minute;
-                        timeET.setText(timeStr);
-
-                    }
-                }, hour , minute,true);
-                //  dialog.setTitle("Select Time");
-
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
-        });
-    }
-
+    /**
+     * This retrieveData() function retrieves data from sharedpreference to our array list.
+     */
     private void retrieveData()
     {
-        sharedPreferences = getSharedPreferences("mishu",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("record",MODE_PRIVATE);
         gson = new Gson();
-        String jsonString = sharedPreferences.getString("mishu",null);
+        String jsonString = sharedPreferences.getString("record",null);
         Type type = new TypeToken<ArrayList<DataModel>>(){}.getType();
         dataModelArrayList = gson.fromJson(jsonString,type);
         if(dataModelArrayList ==null)
@@ -207,13 +182,17 @@ public class UpdateRecord extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * This saveData() function saves the data in sharedpreference.
+     */
     private void saveData()
     {
-        sharedPreferences = getSharedPreferences("mishu",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("record",MODE_PRIVATE);
         editor = sharedPreferences.edit();
         gson = new Gson();
         String jsonString = gson.toJson(dataModelArrayList);
-        editor.putString("mishu",jsonString);
+        editor.putString("record",jsonString);
         editor.apply();
     }
 

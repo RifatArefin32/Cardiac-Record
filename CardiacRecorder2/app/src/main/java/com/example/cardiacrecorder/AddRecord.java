@@ -4,13 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -18,11 +15,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Calendar;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 
 public class AddRecord extends AppCompatActivity {
     Button addButton;
@@ -34,7 +27,6 @@ public class AddRecord extends AppCompatActivity {
     Gson gson;
     String dateStr,timeStr;
     boolean isAllFieldsChecked = false;
-    DatePickerDialog.OnDateSetListener onDateSetListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +53,6 @@ public class AddRecord extends AppCompatActivity {
                 dateStr = dateEd.getText().toString();
                 timeStr = timeEd.getText().toString();
 
-
                 modelclass = new DataModel(dateStr,timeStr,sysInt,diasInt,heartInt,commentStr);
                 dataArray.add(modelclass);
                 Home.dataModelArrayList.add(modelclass);
@@ -76,6 +67,11 @@ public class AddRecord extends AppCompatActivity {
         });
     }
 
+    /**
+     * This CheckAllFields() function checks if the fields are valid or not.
+     * @return
+     *  Return boolean flag
+     */
 
     private boolean CheckAllFields() {
         if (dateEd.length() == 0) {
@@ -95,8 +91,12 @@ public class AddRecord extends AppCompatActivity {
 
         String s1 = sysEd.getText().toString();
         int n1 = Integer.parseInt(s1);
-
-        if(n1<0 && n1>200)
+        if(n1<0)
+        {
+            sysEd.setError("Invalid data input");
+            return false;
+        }
+        else if(n1>200)
         {
             sysEd.setError("Invalid data input");
             return false;
@@ -109,8 +109,14 @@ public class AddRecord extends AppCompatActivity {
 
         String s2 = diaEd.getText().toString();
         int n2 = Integer.parseInt(s2);
+        if(n2<0)
+        {
 
-        if(n2<0 && n2>120)
+                diaEd.setError("Invalid data input");
+                return false;
+
+        }
+        else if(n2>120)
         {
             diaEd.setError("Invalid data input");
             return false;
@@ -124,10 +130,13 @@ public class AddRecord extends AppCompatActivity {
         String s3 = hrEd.getText().toString();
         int n3 = Integer.parseInt(s3);
 
-
         if(n3<0)
         {
-
+            hrEd.setError("Invalid data input");
+            return false;
+        }
+        if(n3>190)
+        {
             hrEd.setError("Invalid data input");
             return false;
         }
@@ -137,11 +146,14 @@ public class AddRecord extends AppCompatActivity {
     }
 
 
+    /**
+     * This retrieveData() function retrieves data from sharedpreference to our array list.
+      */
     private void retrieveData()
     {
-        sharedPreferences = getSharedPreferences("mishu",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("record",MODE_PRIVATE);
         gson = new Gson();
-        String jsonString = sharedPreferences.getString("mishu",null);
+        String jsonString = sharedPreferences.getString("record",null);
         Type type = new TypeToken<ArrayList<DataModel>>(){}.getType();
         dataArray = gson.fromJson(jsonString,type);
         if(dataArray ==null)
@@ -149,16 +161,17 @@ public class AddRecord extends AppCompatActivity {
             dataArray = new ArrayList<>();
         }
     }
-
-   
+    /**
+     * This saveData() function saves the data in sharedpreference.
+     */
     private void saveData()
     {
-        sharedPreferences = getSharedPreferences("mishu",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("record",MODE_PRIVATE);
         editor = sharedPreferences.edit();
         gson = new Gson();
         String jsonString = gson.toJson(dataArray);
         Log.d("data inserted",jsonString);
-        editor.putString("mishu",jsonString);
+        editor.putString("record",jsonString);
         editor.apply();
     }
 

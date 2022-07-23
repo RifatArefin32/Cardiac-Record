@@ -92,22 +92,29 @@ public class Home extends AppCompatActivity {
 
     }
 
-
-
+    /**
+     * This saveData() function saves the data in sharedpreference.
+     */
     private void saveData()
     {
-        sharedPreferences = getSharedPreferences("mishu",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("record",MODE_PRIVATE);
         editor = sharedPreferences.edit();
         gson = new Gson();
         String jsonString = gson.toJson(dataModelArrayList);
-        editor.putString("mishu",jsonString);
+        editor.putString("record",jsonString);
         editor.apply();
     }
+
+
+
+    /**
+     * This retrieveData() function retrieves data from sharedpreference to our array list.
+     */
     private void retrieveData()
     {
-        sharedPreferences = getSharedPreferences("mishu",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("record",MODE_PRIVATE);
         gson = new Gson();
-        String jsonString = sharedPreferences.getString("mishu",null);
+        String jsonString = sharedPreferences.getString("record",null);
         Type type = new TypeToken<ArrayList<DataModel>>(){}.getType();
         dataModelArrayList = gson.fromJson(jsonString,type);
         if(dataModelArrayList ==null)
