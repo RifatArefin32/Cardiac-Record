@@ -38,7 +38,7 @@ public class ViewRecord extends AppCompatActivity {
         TextView time = findViewById(R.id.measuredTime);
         TextView date = findViewById(R.id.measuredDate);
         TextView comment = findViewById(R.id.commentData);
-        Button backButton = findViewById( R.id.backButton);
+
         retrieveData();
 /*        String Mdate = "";
         String Mtime = "";
@@ -55,12 +55,6 @@ public class ViewRecord extends AppCompatActivity {
             date.setText(""+dataModel.getDate());
             time.setText(""+dataModel.getTime());
             comment.setText(""+dataModel.getComment());
-            backButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
         }
     }
     private void retrieveData()
