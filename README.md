@@ -26,7 +26,7 @@ as well as heart rate easily.
 <hr>
 
 ## Usage
-Use this [stroyborard]() to use this application easily.
+Use this [stroyborard](https://github.com/RIfatArefin32/Cardiac-Record/wiki/Story-board-sequence) to use this application easily.
 <hr>
 
 ## Contributing
@@ -34,7 +34,7 @@ Contributions are what make the open source community such an amazing place to l
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement". Don't forget to give the project a star! Thanks again!
 
-1. Fork the Project
+1. Clone the Project
 2. Create your Feature Branch 
 3. Commit your Changes 
 4. Push to the Branch 
